@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beacon ID - Premium Black & White Shirt</title>
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #f5f5f5;
+            --text: #333333;
+            --light-gray: #e0e0e0;
+            --discount: #e53935;
+            --shopee: #ee4d2d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--secondary);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            padding: 30px 0;
+            border-bottom: 1px solid var(--light-gray);
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1rem;
+            color: var(--text);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .hero {
+            padding: 50px 0;
+            text-align: center;
+        }
+        
+        .product-card {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--secondary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 400px;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .product-details {
+            padding: 30px;
+            width: 100%;
+        }
+        
+        .product-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .product-description {
+            margin-bottom: 20px;
+            color: var(--text);
+            font-weight: 300;
+        }
+        
+        .price-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .discounted-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--discount);
+        }
+        
+        .discount-badge {
+            background-color: var(--discount);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+        
+        .size-selector {
+            margin-bottom: 25px;
+        }
+        
+        .size-title {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .size-options {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .size-option {
+            border: 1px solid var(--light-gray);
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .size-option:hover, .size-option.selected {
+            background-color: var(--primary);
+            color: var(--secondary);
+            border-color: var(--primary);
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            margin: 0 10px;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary);
+            color: var(--secondary);
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .checkout-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .payment-options {
+            display: none;
+            padding: 30px;
+            background-color: var(--accent);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .payment-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-align: center;
+        }
+        
+        .payment-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .payment-option-btn {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            background-color: var(--secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+        
+        .payment-option-btn:hover {
+            border-color: var(--primary);
+        }
+        
+        .payment-option-btn.selected {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: var(--secondary);
+        }
+        
+        .shopee-btn.selected {
+            background-color: var(--shopee);
+            border-color: var(--shopee);
+        }
+        
+        .payment-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+        
+        .payment-icon img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .payment-label {
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        
+        /* Shopee special pricing */
+        .shopee-price-info {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .shopee-original-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 8px;
+        }
+        
+        .shopee-discounted-price {
+            color: var(--shopee);
+            font-weight: 600;
+        }
+        
+        .shopee-discount-badge {
+            background-color: var(--shopee);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            margin-left: 5px;
+        }
+        
+        .continue-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary);
+            color: var(--secondary);
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        
+        .continue-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .continue-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .checkout-form {
+            display: none;
+            padding: 30px;
+            background-color: var(--accent);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .form-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .payment-section {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background-color: var(--accent);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .payment-section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .qris-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .qris-placeholder {
+            width: 250px;
+            height: 250px;
+            background-color: var(--secondary);
+            border: 2px solid var(--light-gray);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .qris-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .confirm-btn {
+            padding: 12px 25px;
+            background-color: #25D366;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .confirm-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .shopee-redirect {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .shopee-redirect h3 {
+            color: var(--shopee);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .shopee-special-price {
+            background-color: var(--shopee);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .shopee-special-price h4 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .shopee-price-display {
+            font-size: 1.3rem;
+        }
+        
+        .shopee-price-display .shopee-original-price {
+            color: #ffcccc;
+        }
+        
+        .shopee-btn-redirect {
+            background-color: var(--shopee);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .shopee-btn-redirect:hover {
+            opacity: 0.9;
+            color: white;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid var(--light-gray);
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .product-image {
+                height: 300px;
+                padding: 15px;
+            }
+            
+            .product-details {
+                padding: 20px;
+            }
+            
+            .product-title {
+                font-size: 1.5rem;
+            }
+            
+            .payment-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .qris-placeholder {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">BEACON ID</div>
+            <div class="tagline">ELEGANCE IN PERSON</div>
+        </header>
+        
+        <section class="hero">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="produk.jpg" alt="Beacon ID | Classy Person" />
+                </div>
+                
+                <div class="product-details">
+                    <h1 class="product-title">Beacon ID | Classy Person</h1>
+                    <p class="product-description">
+                        Tshirt premium dengan bahan katun pilihan berkualitas tinggi yang nyaman dipakai seharian. 
+                        Desain minimalis elegan dengan jahitan presisi dan detail finishing mewah. 
+                        Tersedia dalam ukuran yang pas untuk penampilan sempurna.
+                    </p>
+                    
+                    <div class="price-container">
+                        <span class="original-price">Rp 150.000</span>
+                        <span class="discounted-price">Rp 75.000</span>
+                        <span class="discount-badge">50% OFF</span>
+                    </div>
+                    
+                    <div class="size-selector">
+                        <div class="size-title">Pilih Ukuran:</div>
+                        <div class="size-options">
+                            <div class="size-option" data-size="M">M</div>
+                            <div class="size-option" data-size="L">L</div>
+                            <div class="size-option" data-size="XL">XL</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="text" class="quantity-input" value="1" readonly>
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    
+                    <button class="checkout-btn">Checkout Sekarang</button>
+                </div>
+            </div>
+            
+            <!-- Payment Options Selection -->
+            <div class="payment-options" id="paymentOptions">
+                <h2 class="payment-title">Pilih Metode Pembayaran</h2>
+                <div class="payment-buttons">
+                    <div class="payment-option-btn shopee-btn" data-payment="shopee">
+                        <div class="payment-icon">
+                            <img src="shopee.png" alt="Shopee Logo" />
+                        </div>
+                        <div class="payment-label">Via Shopee</div>
+                        <div class="shopee-price-info">
+                            <span class="shopee-original-price">Rp 75.000</span>
+                            <span class="shopee-discounted-price">Rp 65.000</span>
+                            <span class="shopee-discount-badge">EXTRA 13% OFF</span>
+                        </div>
+                    </div>
+                    <div class="payment-option-btn qris-btn" data-payment="qris">
+                        <div class="payment-icon">
+                            <img src="qris.png" alt="QRIS Logo" />
+                        </div>
+                        <div class="payment-label">Via QRIS</div>
+                    </div>
+                </div>
+                <button class="continue-btn" id="continueBtn" disabled>Lanjutkan</button>
+            </div>
+            
+            <!-- Shopee Section -->
+            <div class="payment-section" id="shopeeSection">
+                <div class="shopee-redirect">
+                    <h3>🛒 Lanjut ke Toko Shopee Kami</h3>
+                    
+                    <div class="shopee-special-price">
+                        <h4>🎉 Penawaran Khusus Shopee!</h4>
+                        <div class="shopee-price-display">
+                            <span class="shopee-original-price">Rp 75.000</span>
+                            <span class="shopee-discounted-price">Rp 65.000</span>
+                            <span class="shopee-discount-badge">EXTRA 13% OFF</span>
+                        </div>
+                        <p style="margin-top: 10px; font-size: 0.9rem;">Hemat Rp 10.000 lebih dengan berbelanja di Shopee!</p>
+                    </div>
+                    
+                    <p style="margin-bottom: 20px;">Anda akan diarahkan ke toko resmi kami di Shopee untuk menyelesaikan pembelian dengan harga spesial.</p>
+                    <a href="https://shopee.co.id/beaconid" class="shopee-btn-redirect" id="shopeeRedirectBtn" target="_blank">
+                        Buka Toko Shopee - Rp 65.000
+                    </a>
+                </div>
+            </div>
+            
+            <!-- QRIS Flow -->
+            <div class="checkout-form" id="checkoutForm">
+                <h2 class="form-title">Informasi Pengiriman</h2>
+                <form id="shippingForm">
+                    <div class="form-group">
+                        <label for="customerName" class="form-label">Nama Lengkap</label>
+                        <input type="text" id="customerName" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="form-label">Alamat Lengkap</label>
+                        <textarea id="address" class="form-input" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="whatsapp" class="form-label">Nomor WhatsApp</label>
+                        <input type="tel" id="whatsapp" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-input" required>
+                    </div>
+                    <button type="submit" class="checkout-btn">Lanjut ke Pembayaran</button>
+                </form>
+            </div>
+            
+            <div class="payment-section" id="paymentSection">
+                <h2 class="payment-section-title">Pembayaran via QRIS</h2>
+                <div class="qris-container">
+                    <div class="qris-placeholder">
+                        <img src="kode.jpg" alt="QRIS Code" />
+                    </div>
+                </div>
+                <p>Scan QR code di atas untuk melakukan pembayaran</p>
+                <button class="confirm-btn" id="confirmBtn">Konfirmasi via WhatsApp</button>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        &copy; 2025 Beacon ID. All rights reserved.
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let selectedPaymentMethod = null;
+            
+            // GANTI NOMOR WHATSAPP ANDA DI SINI (tanpa tanda + dan spasi)
+            const ADMIN_WHATSAPP = '6287888261769'; // Ganti dengan nomor WhatsApp Anda
+            
+            // Size selection
+            const sizeOptions = document.querySelectorAll('.size-option');
+            sizeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    sizeOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+            
+            // Quantity adjustment
+            const minusBtn = document.querySelector('.minus');
+            const plusBtn = document.querySelector('.plus');
+            const quantityInput = document.querySelector('.quantity-input');
+            
+            minusBtn.addEventListener('click', function() {
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                }
+            });
+            
+            plusBtn.addEventListener('click', function() {
+                let currentValue = parseInt(quantityInput.value);
+                quantityInput.value = currentValue + 1;
+            });
+            
+            // Checkout flow
+            const checkoutBtn = document.querySelector('.checkout-btn');
+            const paymentOptions = document.getElementById('paymentOptions');
+            const continueBtn = document.getElementById('continueBtn');
+            
+            // Payment method selection
+            const paymentOptionBtns = document.querySelectorAll('.payment-option-btn');
+            paymentOptionBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    paymentOptionBtns.forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedPaymentMethod = this.dataset.payment;
+                    continueBtn.disabled = false;
+                });
+            });
+            
+            checkoutBtn.addEventListener('click', function() {
+                const selectedSize = document.querySelector('.size-option.selected');
+                if (!selectedSize) {
+                    alert('Silakan pilih ukuran terlebih dahulu');
+                    return;
+                }
+                
+                paymentOptions.style.display = 'block';
+                paymentOptions.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            continueBtn.addEventListener('click', function() {
+                if (!selectedPaymentMethod) {
+                    alert('Silakan pilih metode pembayaran');
+                    return;
+                }
+                
+                paymentOptions.style.display = 'none';
+                
+                if (selectedPaymentMethod === 'shopee') {
+                    const shopeeSection = document.getElementById('shopeeSection');
+                    shopeeSection.style.display = 'block';
+                    shopeeSection.scrollIntoView({ behavior: 'smooth' });
+                } else if (selectedPaymentMethod === 'qris') {
+                    const checkoutForm = document.getElementById('checkoutForm');
+                    checkoutForm.style.display = 'block';
+                    checkoutForm.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+            
+            // Shopee redirect
+            const shopeeRedirectBtn = document.getElementById('shopeeRedirectBtn');
+            shopeeRedirectBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Ganti URL ini dengan link toko Shopee Anda yang sebenarnya
+                const shopeeUrl = 'https://shopee.co.id/beaconid';
+                window.open(shopeeUrl, '_blank');
+            });
+            
+            // QRIS flow
+            const checkoutForm = document.getElementById('checkoutForm');
+            const shippingForm = document.getElementById('shippingForm');
+            const paymentSection = document.getElementById('paymentSection');
+            const confirmBtn = document.getElementById('confirmBtn');
+            
+            shippingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                checkoutForm.style.display = 'none';
+                paymentSection.style.display = 'block';
+                paymentSection.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            confirmBtn.addEventListener('click', function() {
+                const customerName = document.getElementById('customerName').value;
+                const customerWhatsapp = document.getElementById('whatsapp').value;
+                const address = document.getElementById('address').value;
+                const email = document.getElementById('email').value;
+                const selectedSize = document.querySelector('.size-option.selected').dataset.size;
+                const quantity = quantityInput.value;
+                
+                // Determine price based on payment method
+                const price = selectedPaymentMethod === 'shopee' ? 65000 : 75000;
+                
+                // Create WhatsApp message
+                const message = `Halo admin, saya sudah melakukan pembayaran untuk:
+
+📦 Produk: Beacon ID | Classy Person
+📏 Ukuran: ${selectedSize}
+📊 Jumlah: ${quantity} pcs
+💰 Total: Rp ${price * parseInt(quantity)}
+
+👤 Nama: ${customerName}
+📧 Email: ${email}
+📍 Alamat: ${address}
+📱 WhatsApp: ${customerWhatsapp}
+
+Mohon konfirmasi pembayaran dan pengiriman. Terima kasih!`;
+                
+                // Open WhatsApp to admin number
+                window.open(`https://wa.me/${ADMIN_WHATSAPP}?text=${encodeURIComponent(message)}`, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
